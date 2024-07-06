@@ -32,9 +32,9 @@
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="Submit" layoutX="274.0" layoutY="341.0" mnemonicParsing="false" style="-fx-background-color: #9fd6a3;" text="Submit" />
+      <Button fx:id="Submit" layoutX="274.0" layoutY="341.0" mnemonicParsing="false" onAction="#onSubmitButtonClick" style="-fx-background-color: #9fd6a3;" text="Submit" />
       <Button layoutX="-123.0" layoutY="1.0" mnemonicParsing="false" text="Button" />
-      <Button fx:id="Clear" layoutX="386.0" layoutY="341.0" mnemonicParsing="false" style="-fx-background-color: #cc816c;" text="Clear" />
+      <Button fx:id="Clear" layoutX="386.0" layoutY="341.0" mnemonicParsing="false" onAction="#onClearButtonClick" style="-fx-background-color: #cc816c;" text="Clear" />
       <Hyperlink fx:id="createAccount" layoutX="298.0" layoutY="389.0" onAction="#onHyperlinkClick" text="create account" underline="true">
          <font>
             <Font size="15.0" />
