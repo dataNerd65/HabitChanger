@@ -15,8 +15,8 @@
             <Font name="System Bold Italic" size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="274.0" layoutY="249.0" />
-      <PasswordField layoutX="274.0" layoutY="292.0" />
+      <TextField fx:id="username" layoutX="274.0" layoutY="249.0" />
+      <PasswordField fx:id="password" layoutX="274.0" layoutY="292.0" />
       <Label layoutX="164.0" layoutY="247.0" text="Username" textFill="WHITE">
          <font>
             <Font size="20.0" />
@@ -32,10 +32,10 @@
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <Button layoutX="274.0" layoutY="341.0" mnemonicParsing="false" style="-fx-background-color: #9fd6a3;" text="Submit" />
+      <Button fx:id="Submit" layoutX="274.0" layoutY="341.0" mnemonicParsing="false" style="-fx-background-color: #9fd6a3;" text="Submit" />
       <Button layoutX="-123.0" layoutY="1.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="386.0" layoutY="341.0" mnemonicParsing="false" style="-fx-background-color: #cc816c;" text="Clear" />
-      <Hyperlink fx:id="createAccount" onAction="#onHyperlinkClick" layoutX="298.0" layoutY="389.0" text="create account" underline="true">
+      <Button fx:id="Clear" layoutX="386.0" layoutY="341.0" mnemonicParsing="false" style="-fx-background-color: #cc816c;" text="Clear" />
+      <Hyperlink fx:id="createAccount" layoutX="298.0" layoutY="389.0" onAction="#onHyperlinkClick" text="create account" underline="true">
          <font>
             <Font size="15.0" />
          </font>
