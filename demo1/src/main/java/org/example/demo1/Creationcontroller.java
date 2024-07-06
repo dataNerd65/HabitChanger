@@ -88,14 +88,14 @@ public class Creationcontroller {
                     stateM.setString(1, fname);
                     stateM.setString(2, user);
                     stateM.setString(3, mail);
-                    stateM.setString(4, pass1); // Iwill remember the hashing
+                    stateM.setString(4, pass1); // I will remember the hashing
                     stateM.executeUpdate();
                     APPutils.ShowAlert("Success!", "Account created Successfully");
                     try{
                         //after account creation success
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/Workspace.fxml"));
                         Parent workspaceView = loader.load();
-                        Scene workspaceScene = new Scene(workspaceView, 800, 600); //setting the desired sizes
+                        Scene workspaceScene = new Scene(workspaceView, 1200, 800); //setting the desired sizes
 
                         //Getting  the current stage from any control, i will use backToLogin hyperlink
                         Stage window = (Stage) backToLogin.getScene().getWindow();
