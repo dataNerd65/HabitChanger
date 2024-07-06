@@ -7,17 +7,27 @@ import java.sql.SQLException;
 
 public class DatabaseUtil {
 
-    private static final String URL = "DB_URL";
-    private static final String USER = "DB_USER";
-    private static final String PASSWORD = "DB_PASSWORD";
+    private static final String URL = System.getenv("DB_URL");
+    private static final String USER = System.getenv("DB_USER");
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
+
+    static {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
 
     public static Connection getConnection(){
         try{
-            DriverManager.getConnection(URL, USER, PASSWORD);
+             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch(SQLException e){
             //log and /or rethrow as appropriate
             e.printStackTrace();
+            return null;
+
         }
-        return null;
+
     }
 }
