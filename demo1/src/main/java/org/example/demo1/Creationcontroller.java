@@ -60,7 +60,7 @@ public class Creationcontroller {
 
         //Validation if not empty
         if(fname.isEmpty() || user.isEmpty() || mail.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
+            APPutils.ShowAlert( "Incomplete Form", "Please fill in all required fields.");
             return;
         }
         if(!pass1.equals(pass2)){
@@ -77,7 +77,7 @@ public class Creationcontroller {
                     checkStatement.setString(2, mail);
                     ResultSet rs = checkStatement.executeQuery();
                     if(rs.next() && rs.getInt(1) > 0){
-                        JOptionPane.showMessageDialog(null, "Username or Email already exists1");
+                        APPutils.ShowAlert("Error!", "Email or username already exists.");
                         return;
                     }
                 }
@@ -90,7 +90,7 @@ public class Creationcontroller {
                     stateM.setString(3, mail);
                     stateM.setString(4, pass1); // Iwill remember the hashing
                     stateM.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Account created successfully");
+                    APPutils.ShowAlert("Success!", "Account created Successfully");
                     try{
                         //after account creation success
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/Workspace.fxml"));
@@ -111,14 +111,15 @@ public class Creationcontroller {
                     password1.setText("");
                     password2.setText("");
                 } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, "Failed to create account: " + e.getMessage());
+                    APPutils.ShowAlert("Account Creation Error!", "Failed to create Account." + e.getMessage());
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Failed to connect to the database!");
+                APPutils.ShowAlert("Error!" , "Failed to connect to database.");
             }
 
             } catch(SQLException e){
-            JOptionPane.showMessageDialog(null,  "Database Connection Error: " + e.getMessage());
+            APPutils.ShowAlert("Connection Error!", "Error Connecting to the database." + e.getMessage());
+
         }
         }
 
