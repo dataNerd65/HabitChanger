@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.demo1.Workspace"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="workpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="687.0" prefWidth="919.0" styleClass="root" stylesheets="@styles/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="14.0" layoutY="23.0" text="Your journey to freedom begins now" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="75.0" text="It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery" textFill="WHITE" />
+      <Label layoutX="35.0" layoutY="154.0" text="GO TO:" textFill="WHITE" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="102.0" text="Welcome Peter" textFill="#00ff4d">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Hyperlink layoutX="18.0" layoutY="185.0" style="-fx-background color: black;" text="Daily Reports" textFill="#0b0096">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="18.0" layoutY="227.0" style="-fx-background color: black;" text="Weekly Reports" textFill="#0b0096">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="18.0" layoutY="262.0" style="-fx-background color: black;" text="Accomplishments" textFill="#0b0096">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink layoutX="18.0" layoutY="304.0" style="-fx-background color: black;" text="My Calendar" textFill="#0b0096">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Hyperlink>
+   </children>
 </AnchorPane>
