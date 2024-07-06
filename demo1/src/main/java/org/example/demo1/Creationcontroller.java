@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class Creationcontroller {
@@ -42,6 +44,21 @@ public class Creationcontroller {
     private PasswordField password1;
     @FXML
     private PasswordField password2;
+
+    @FXML
+    private void onClickButtonSubmit(ActionEvent event){
+        System.out.println("Submit button clicked!");
+    }
+
+    @FXML
+    private void onClickButtonClear(ActionEvent event){
+        System.out.println("Clear Button clicked!");
+        Fname.setText("");
+        username.setText("");
+        email.setText("");
+        password1.setText("");
+        password2.setText("");
+    }
 
 
 }
