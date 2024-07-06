@@ -10,7 +10,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="559.0" prefWidth="681.0" style="-fx-background-color: black; -fx-border-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.Creationcontroller">
    <children>
-      <Button layoutX="299.0" layoutY="385.0" mnemonicParsing="false" text="Submit" />
+      <Button fx:id="SubmitB" layoutX="299.0" layoutY="385.0" mnemonicParsing="false" onAction="#onClickButtonSubmit" text="Submit" />
       <Label layoutX="200.0" layoutY="110.0" text="Admin SignUp" textFill="#4554f8" underline="true">
          <font>
             <Font name="System Bold Italic" size="30.0" />
@@ -41,12 +41,12 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <PasswordField layoutX="361.0" layoutY="288.0" />
-      <PasswordField layoutX="361.0" layoutY="323.0" />
-      <TextField layoutX="361.0" layoutY="251.0" />
-      <TextField layoutX="361.0" layoutY="212.0" />
-      <TextField layoutX="361.0" layoutY="173.0" />
-      <Button layoutX="401.0" layoutY="385.0" mnemonicParsing="false" text="Clear" />
+      <PasswordField fx:id="password1" layoutX="361.0" layoutY="288.0" prefHeight="26.0" prefWidth="198.0" />
+      <PasswordField fx:id="password2" layoutX="361.0" layoutY="323.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="email" layoutX="361.0" layoutY="251.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="username" layoutX="361.0" layoutY="212.0" prefHeight="26.0" prefWidth="198.0" />
+      <TextField fx:id="Fname" layoutX="361.0" layoutY="173.0" prefHeight="26.0" prefWidth="198.0" />
+      <Button fx:id="ClearB" layoutX="401.0" layoutY="385.0" mnemonicParsing="false" onAction="#onClickButtonClear" text="Clear" />
       <Hyperlink fx:id="backToLogin" layoutX="355.0" layoutY="433.0" onAction="#onHyperlinkClick" text="Back to login" />
    </children>
 </AnchorPane>
