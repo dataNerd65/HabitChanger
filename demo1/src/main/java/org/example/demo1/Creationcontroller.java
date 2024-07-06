@@ -16,6 +16,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Creationcontroller {
@@ -68,6 +69,20 @@ public class Creationcontroller {
         }
         try(Connection conn = DatabaseUtil.getConnection()){
             if(conn != null){
+
+                //We first check if the email and username exists
+                String checkSQL = "SELECT COUNT(*) FROM users2 WHERE username = ? OR email = ?";
+                try (PreparedStatement checkStatement = conn.prepareStatement(checkSQL)){
+                    checkStatement.setString(1, user);
+                    checkStatement.setString(2, mail);
+                    ResultSet rs = checkStatement.executeQuery();
+                    if(rs.next() && rs.getInt(1) > 0){
+                        JOptionPane.showMessageDialog(null, "Username or Email already exists1");
+                        return;
+                    }
+                }
+
+                //Insert new user if username or email are unique
                 String sql = "INSERT INTO users2 (fullname, username, email, password) VALUES (?, ?, ?, ?)";
                 try (PreparedStatement stateM = conn.prepareStatement(sql)) {
                     stateM.setString(1, fname);
@@ -89,6 +104,7 @@ public class Creationcontroller {
                     }catch(IOException e){
                         e.printStackTrace();
                     }
+                    //clearing fields after successful creation of account
                     Fname.setText("");
                     username.setText("");
                     email.setText("");
@@ -105,7 +121,6 @@ public class Creationcontroller {
             JOptionPane.showMessageDialog(null,  "Database Connection Error: " + e.getMessage());
         }
         }
-
 
     @FXML
     private void onClickButtonClear(ActionEvent event){
