@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class Creationcontroller {
     @FXML
@@ -46,9 +49,50 @@ public class Creationcontroller {
     private PasswordField password2;
 
     @FXML
-    private void onClickButtonSubmit(ActionEvent event){
+    private void onClickButtonSubmit(ActionEvent event) throws SQLException {
         System.out.println("Submit button clicked!");
-    }
+        String fname = Fname.getText();
+        String user = username.getText();
+        String mail = email.getText();
+        String pass1 = password1.getText();
+        String pass2 = password2.getText();
+
+        //Validation if not empty
+        if(fname.isEmpty() || user.isEmpty() || mail.isEmpty() || pass1.isEmpty() || pass2.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
+            return;
+        }
+        if(!pass1.equals(pass2)){
+            JOptionPane.showMessageDialog(null, "Passwords do not Match!");
+            return;
+        }
+        try(Connection conn = DatabaseUtil.getConnection()){
+            if(conn != null){
+                String sql = "INSERT INTO users2 (fullname, username, email, password) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement stateM = conn.prepareStatement(sql)) {
+                    stateM.setString(1, fname);
+                    stateM.setString(2, user);
+                    stateM.setString(3, mail);
+                    stateM.setString(4, pass1); // Iwill remember the hashing
+                    stateM.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Account created successfully");
+                    Fname.setText("");
+                    username.setText("");
+                    email.setText("");
+                    password1.setText("");
+                    password2.setText("");
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Failed to create account: " + e.getMessage());
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Failed to connect to the database!");
+            }
+
+            } catch(SQLException e){
+            JOptionPane.showMessageDialog(null,  "Database Connection Error: " + e.getMessage());
+        }
+        }
+
 
     @FXML
     private void onClickButtonClear(ActionEvent event){
