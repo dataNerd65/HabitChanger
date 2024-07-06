@@ -76,6 +76,19 @@ public class Creationcontroller {
                     stateM.setString(4, pass1); // Iwill remember the hashing
                     stateM.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Account created successfully");
+                    try{
+                        //after account creation success
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/Workspace.fxml"));
+                        Parent workspaceView = loader.load();
+                        Scene workspaceScene = new Scene(workspaceView, 800, 600); //setting the desired sizes
+
+                        //Getting  the current stage from any control, i will use backToLogin hyperlink
+                        Stage window = (Stage) backToLogin.getScene().getWindow();
+                        window.setScene(workspaceScene);
+                        window.show();
+                    }catch(IOException e){
+                        e.printStackTrace();
+                    }
                     Fname.setText("");
                     username.setText("");
                     email.setText("");
