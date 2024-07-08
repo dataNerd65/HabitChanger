@@ -4,7 +4,6 @@ import javafx.animation.PauseTransition;
 import javafx.scene.control.Alert;
 import javafx.util.Duration;
 
-import static javafx.util.Duration.seconds;
 
 public class APPutils {
     public static void ShowAlert(String headerText, String contextText){
