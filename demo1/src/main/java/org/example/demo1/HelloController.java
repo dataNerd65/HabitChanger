@@ -19,6 +19,8 @@ import java.sql.SQLException;
 
 public class HelloController {
     @FXML
+    private Hyperlink backToLogin;
+    @FXML
     private Hyperlink createAccount;
     @FXML
     private void onHyperlinkClick(ActionEvent event){
@@ -63,18 +65,13 @@ public class HelloController {
                     //Login Success
                     APPutils.ShowAlert("Success!", "Login Success.");
                     //Navigating to the next scene
-                    try{
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/Workspace.fxml"));
-                        Parent workspaceView = loader.load();
-                        Scene  workspaceScene = new Scene(workspaceView, 1200, 900);
+                    Workspace  workspaceView = new Workspace();
+                    Scene workspaceScene = new Scene(workspaceView, 1200, 900);//setting desired sizes
 
-                        //Getting current Stage
-                        Stage window = (Stage) createAccount.getScene().getWindow();
-                        window.setScene(workspaceScene);
-                        window.show();
-                    }catch (IOException e){
-                        e.printStackTrace();
-                    }
+                    //Getting the current stage from any control
+                    Stage window = (Stage) createAccount.getScene().getWindow();
+                    window.setScene(workspaceScene);
+                    window.show();
 
                 }else {
                     //Login Failure
