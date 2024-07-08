@@ -66,7 +66,7 @@ public class HelloController {
                     try{
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/Workspace.fxml"));
                         Parent workspaceView = loader.load();
-                        Scene  workspaceScene = new Scene(workspaceView, 1200, 800);
+                        Scene  workspaceScene = new Scene(workspaceView, 1200, 900);
 
                         //Getting current Stage
                         Stage window = (Stage) createAccount.getScene().getWindow();

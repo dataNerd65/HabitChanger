@@ -95,7 +95,7 @@ public class Creationcontroller {
                         //after account creation success
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/Workspace.fxml"));
                         Parent workspaceView = loader.load();
-                        Scene workspaceScene = new Scene(workspaceView, 1200, 800); //setting the desired sizes
+                        Scene workspaceScene = new Scene(workspaceView, 1200, 900); //setting the desired sizes
 
                         //Getting  the current stage from any control, i will use backToLogin hyperlink
                         Stage window = (Stage) backToLogin.getScene().getWindow();
