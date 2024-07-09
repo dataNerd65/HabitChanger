@@ -21,6 +21,21 @@ public class Workspace extends BorderPane {
                 "-fx-border-width: 2px;" +
                 "-fx-border-radius: 5px");
     }
+    private Button createSidebarButton(String text, VBox sidebar, Runnable action){
+        Button button = new Button(text);
+        button.prefWidthProperty().bind(sidebar.widthProperty());
+        button.setOnAction(event -> action.run());
+
+        //Styling the buttons
+        String buttonStyle = "-fx-background-color: #98dce7;"+
+                "-fx-text-fill: black;" +
+                "-fx-text-style: fantasy;"+
+                "-fx-border-color: white;"+
+                "-fx-border-width: 2;"+
+                "-fx-font-size: 14px;";
+        button.setStyle(buttonStyle);
+        return button;
+    }
 
     private void initializeUI() {
         setBackgroundColor();
@@ -32,21 +47,17 @@ public class Workspace extends BorderPane {
             double paneWidth = newValue.doubleValue();
             sidebar.setPrefWidth(paneWidth * 0.1); //setting sidebar to 10% of total width
         });
-        //Create buttons
-        Button profileButton = new Button("Your profile");
-        Button dailyReportsButton = new Button("Daily Reports");
-        Button weeklyReportsButton = new Button("Weekly Reports");
-        Button financialsButton = new Button("Financials");
-        Button MyCalendar = new Button("Calendar");
-        Button logoutButton = new Button("Logout");
+        //Create buttons calling the method
+        Button profileButton = createSidebarButton("Your profile", sidebar, () -> System.out.println("Profile button clicked!"));
+        Button dailyReportsButton = createSidebarButton("Daily Reports", sidebar, () -> System.out.println("Daily Reports button clicked!"));
+        Button weeklyReportsButton = createSidebarButton("Weekly Reports", sidebar, () -> System.out.println("Weekly Reports button clicked!"));
+        Button financialsButton = createSidebarButton("Financials", sidebar, () -> System.out.println("Financials button clicked!"));
+        Button MyCalendar = createSidebarButton("Calendar", sidebar, () -> System.out.println("Calendar button clicked!"));
+        Button logoutButton = createSidebarButton("Logout", sidebar, () -> System.out.println("Logout button clicked!"));
+        Button settingsButton = createSidebarButton("Settings", sidebar, () -> System.out.println("Settings button clicked!"));
 
-        //Setting action events for buttons
-        profileButton.setOnAction(event -> {
-            System.out.println("Profile button clicked!");
-            //Thinking to implement this in an external class
-        });
         //Adding the buttons to sideBar
-        sidebar.getChildren().addAll(profileButton, dailyReportsButton, weeklyReportsButton, financialsButton, MyCalendar, logoutButton);
+        sidebar.getChildren().addAll(profileButton, dailyReportsButton, weeklyReportsButton, financialsButton, MyCalendar, logoutButton, settingsButton);
         
         HBox upBar = new HBox(10);
         upBar.setPrefWidth(50);
