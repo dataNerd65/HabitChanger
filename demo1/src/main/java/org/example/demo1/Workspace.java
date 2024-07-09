@@ -61,19 +61,19 @@ public class Workspace extends BorderPane {
         sidebar.getChildren().addAll(profileButton, dailyReportsButton, weeklyReportsButton, financialsButton, MyCalendar, logoutButton, settingsButton);
         
         HBox upBar = new HBox(10);
-        upBar.setPrefWidth(50);
+        upBar.setPrefWidth(100);
         //Adding some css
         sidebar.setStyle("-fx-background-color: rgba(122,157,185,255);"+
                 "-fx-border-color: red;"+
                 "-fx-border-width: 2;");
-        upBar.setStyle("-fx-background-color: #e6f2f0; -fx-border-color: black; -fx-border-width: 2px;");
+        upBar.setStyle("-fx-background-color: #e6f2f0; -fx-border-color: red; -fx-border-width: 2px;");
 
         // Set the sidebar to the left of the main layout
         this.setLeft(sidebar);
         //and the hbox vertical
         //but first a label
         Label headerLabel = new Label("Dashboard");
-        headerLabel.setStyle("-fx-font-weight: bold");
+        headerLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 24px;");//Increase font size for larger text
         Pane spacerleft = new Pane();
         Pane spacerRight = new Pane();
         HBox.setHgrow(spacerleft, Priority.ALWAYS);
