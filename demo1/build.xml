@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JavaFXProject" default="run" basedir=".">
+    <description>
+        Build file for JavaFX Project using Ant
+    </description>
+
+    <!-- Directories -->
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="lib.dir" value="lib"/>
+    <property name="javafx.sdk" value="/usr/lib/jvm/javafx-sdk-17.0.1/lib"/>
+
+    <!-- Create necessary directories -->
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <!-- Compile the source files -->
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
+            <classpath>
+                <fileset dir="${javafx.sdk}">
+                    <include name="*.jar"/>
+                </fileset>
+                <fileset dir="${lib.dir}">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <!-- Create the JAR file -->
+    <target name="jar" depends="compile">
+        <jar destfile="${dist.dir}/JavaFXProject.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="org.example.demo1.HelloApplication"/>
+                <attribute name="Class-Path" value="lib/"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <!-- Run the project -->
+    <target name="run" depends="jar">
+        <java jar="${dist.dir}/JavaFXProject.jar" fork="true">
+            <classpath>
+                <path path="${javafx.sdk}"/>
+                <path path="${lib.dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Clean up the build directories -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+</project>
