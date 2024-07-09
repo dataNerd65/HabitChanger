@@ -63,9 +63,10 @@ public class Workspace extends BorderPane {
         HBox upBar = new HBox(10);
         upBar.setPrefWidth(50);
         //Adding some css
-        sidebar.setStyle("-fx-background-color: rgba(122,157,185,255)");
+        sidebar.setStyle("-fx-background-color: rgba(122,157,185,255);"+
+                "-fx-border-color: red;"+
+                "-fx-border-width: 2;");
         upBar.setStyle("-fx-background-color: #e6f2f0; -fx-border-color: black; -fx-border-width: 2px;");
-//
 
         // Set the sidebar to the left of the main layout
         this.setLeft(sidebar);
@@ -77,8 +78,6 @@ public class Workspace extends BorderPane {
         Pane spacerRight = new Pane();
         HBox.setHgrow(spacerleft, Priority.ALWAYS);
         HBox.setHgrow(spacerRight, Priority.ALWAYS);
-        spacerleft.setMinSize(10, 1);
-        spacerRight.setMinSize(10, 1);
         upBar.getChildren().addAll(spacerleft, headerLabel, spacerRight);
         this.setTop(upBar);
 
