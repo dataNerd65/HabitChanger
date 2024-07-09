@@ -29,7 +29,8 @@ public class Workspace extends BorderPane {
         //Styling the buttons
         String buttonStyle = "-fx-background-color: #98dce7;"+
                 "-fx-text-fill: black;" +
-                "-fx-text-style: fantasy;"+
+                "-fx-font-family: 'Georgia';"+
+                "-fx-font-style: italic;"+
                 "-fx-border-color: white;"+
                 "-fx-border-width: 2;"+
                 "-fx-font-size: 14px;";
