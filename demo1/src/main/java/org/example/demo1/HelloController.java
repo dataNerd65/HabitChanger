@@ -66,7 +66,7 @@ public class HelloController {
                     APPutils.ShowAlert("Success!", "Login Success.");
                     //Navigating to the next scene
                     Workspace  workspaceView = new Workspace();
-                    Scene workspaceScene = new Scene(workspaceView, 1200, 900);//setting desired sizes
+                    Scene workspaceScene = new Scene(workspaceView, 1300, 900);//setting desired sizes
 
                     //Getting the current stage from any control
                     Stage window = (Stage) createAccount.getScene().getWindow();

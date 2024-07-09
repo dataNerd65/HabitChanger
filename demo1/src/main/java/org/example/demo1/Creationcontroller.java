@@ -90,7 +90,7 @@ public class Creationcontroller {
                     stateM.executeUpdate();
                     APPutils.ShowAlert("Success!", "Account created Successfully");
                     Workspace  workspaceView = new Workspace();
-                    Scene workspaceScene = new Scene(workspaceView, 1200, 900);//setting desired sizes
+                    Scene workspaceScene = new Scene(workspaceView, 1300, 900);//setting desired sizes
 
                     //Getting the current stage from any control
                     Stage window = (Stage) backToLogin.getScene().getWindow();
