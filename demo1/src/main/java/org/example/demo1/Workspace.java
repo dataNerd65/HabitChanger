@@ -1,6 +1,7 @@
 package org.example.demo1;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -32,6 +33,20 @@ public class Workspace extends BorderPane {
             sidebar.setPrefWidth(paneWidth * 0.1); //setting sidebar to 10% of total width
         });
         //Create buttons
+        Button profileButton = new Button("Your profile");
+        Button dailyReportsButton = new Button("Daily Reports");
+        Button weeklyReportsButton = new Button("Weekly Reports");
+        Button financialsButton = new Button("Financials");
+        Button MyCalendar = new Button("Calendar");
+        Button logoutButton = new Button("Logout");
+
+        //Setting action events for buttons
+        profileButton.setOnAction(event -> {
+            System.out.println("Profile button clicked!");
+            //Thinking to implement this in an external class
+        });
+        //Adding the buttons to sideBar
+        sidebar.getChildren().addAll(profileButton, dailyReportsButton, weeklyReportsButton, financialsButton, MyCalendar, logoutButton);
         
         HBox upBar = new HBox(10);
         upBar.setPrefWidth(50);
