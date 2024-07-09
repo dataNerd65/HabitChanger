@@ -28,8 +28,15 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file demo1/pom.xml
+      run: mvn -B package --file HabitChanger/demo1/pom.xml
 
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
+    - name: Generate Dependency Graph
+      run: |
+        cd HabitChanger/demo1
+        mvn com.github.ferstl:depgraph-maven-plugin:4.0.1:graph -B -DgraphFormat=json
+
+    - name: Upload dependency graph
       uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
+      with:
+        graph: HabitChanger/demo1/target/dependency-graph.json
+
