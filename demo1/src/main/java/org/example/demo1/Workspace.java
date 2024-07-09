@@ -1,26 +1,45 @@
 package org.example.demo1;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 public class Workspace extends BorderPane {
     public Workspace() {
         super();
         initializeUI();
     }
+    public void setBackgroundColor(){
+        BackgroundFill backgroundFill = new BackgroundFill(Color.web("#000000"), CornerRadii.EMPTY, Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        this.setBackground(background);
+    }
+    public void styleBorderPane() {
+        this.setStyle("-fx-border-color: #ffffff;"+
+                "-fx-border-width: 2px;" +
+                "-fx-border-radius: 5px");
+    }
 
     private void initializeUI() {
+        setBackgroundColor();
+        styleBorderPane();
         // Sidebar creation
         VBox sidebar = new VBox(10); // 10 is the spacing between elements
-        sidebar.setPrefWidth(100); // Set the preferred width of the sidebar
-        HBox upbar = new HBox(10);
-        upbar.setPrefWidth(50);
+        //  Dynamic width calculation for sidebar based on BorderPane's width
+        this.widthProperty().addListener((observable, oldValue, newValue) ->{
+            double paneWidth = newValue.doubleValue();
+            sidebar.setPrefWidth(paneWidth * 0.05); //setting sidebar to 10% of total width
+        });
+        
+        HBox upBar = new HBox(10);
+        upBar.setPrefWidth(50);
         //Adding some css
         sidebar.setStyle("-fx-background-color: #523722");
-        upbar.setStyle("-fx-background-color: #e6f2f0; -fx-border-color: black; -fx-border-width: 2px;");
+        upBar.setStyle("-fx-background-color: #e6f2f0; -fx-border-color: black; -fx-border-width: 2px;");
         //Load the icons
         Image homeImage = new Image(getClass().getResourceAsStream("/org/example/demo1/images/home.png"));
         Image settingsImage = new Image(getClass().getResourceAsStream("/org/example/demo1/images/settings.png"));
@@ -65,8 +84,8 @@ public class Workspace extends BorderPane {
         HBox.setHgrow(spacerRight, Priority.ALWAYS);
         spacerleft.setMinSize(10, 1);
         spacerRight.setMinSize(10, 1);
-        upbar.getChildren().addAll(spacerleft, headerLabel, spacerRight);
-        this.setTop(upbar);
+        upBar.getChildren().addAll(spacerleft, headerLabel, spacerRight);
+        this.setTop(upBar);
 
         // Other main content can be added to the center
         // this.setCenter(...);
