@@ -1,12 +1,10 @@
 package org.example.demo1;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -64,7 +62,7 @@ public class Creationcontroller {
             return;
         }
         if(!pass1.equals(pass2)){
-            JOptionPane.showMessageDialog(null, "Passwords do not Match!");
+            APPutils.ShowAlert("Invalid Credentials!", "Passwords do not match.");
             return;
         }
         try(Connection conn = DatabaseUtil.getConnection()){
@@ -91,19 +89,13 @@ public class Creationcontroller {
                     stateM.setString(4, pass1); // I will remember the hashing
                     stateM.executeUpdate();
                     APPutils.ShowAlert("Success!", "Account created Successfully");
-                    try{
-                        //after account creation success
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/Workspace.fxml"));
-                        Parent workspaceView = loader.load();
-                        Scene workspaceScene = new Scene(workspaceView, 1200, 900); //setting the desired sizes
+                    Workspace  workspaceView = new Workspace();
+                    Scene workspaceScene = new Scene(workspaceView, 1200, 900);//setting desired sizes
 
-                        //Getting  the current stage from any control, i will use backToLogin hyperlink
-                        Stage window = (Stage) backToLogin.getScene().getWindow();
-                        window.setScene(workspaceScene);
-                        window.show();
-                    }catch(IOException e){
-                        e.printStackTrace();
-                    }
+                    //Getting the current stage from any control
+                    Stage window = (Stage) backToLogin.getScene().getWindow();
+                    window.setScene(workspaceScene);
+                    window.show();
                     //clearing fields after successful creation of account
                     Fname.setText("");
                     username.setText("");
