@@ -81,5 +81,21 @@ public class Workspace extends BorderPane {
         upBar.getChildren().addAll(spacerleft, headerLabel, spacerRight);
         this.setTop(upBar);
 
+        // Create a GridPane for more flexible positioning
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10); // Horizontal gap between columns
+        gridPane.setVgap(10); // Vertical gap between rows
+
+        // Create and style the center label
+        Label centerLabel = new Label("Welcome Peter");
+        centerLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: white");
+
+        // Add the label to the GridPane at position 1, 2 (column 1, row 2)
+        gridPane.add(centerLabel, 1, 2);
+
+        // Set the GridPane to the center of the BorderPane
+        this.setCenter(gridPane);
+
+
     }
 }
