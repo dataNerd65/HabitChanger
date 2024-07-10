@@ -87,11 +87,16 @@ public class Workspace extends BorderPane {
         gridPane.setVgap(10); // Vertical gap between rows
 
         // Create and style the center label
-        Label centerLabel = new Label("Welcome Peter");
+        Label centerLabel = new Label("Welcome Peter. Freedom from sins is guaranteed in God's word.");
         centerLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: white");
+        //bible verse label
+        Label bibleVerseLabel = new Label("It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened by a yoke of slavery. -Gal 5:1");
+        bibleVerseLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: white");
 
         // Add the label to the GridPane at position 1, 2 (column 1, row 2)
         gridPane.add(centerLabel, 1, 2);
+        //bible verse below
+        gridPane.add(bibleVerseLabel, 1, 3);
 
         // Set the GridPane to the center of the BorderPane
         this.setCenter(gridPane);
