@@ -91,10 +91,18 @@ public class Workspace extends BorderPane {
 
         // Create and style the center label
         Label centerLabel = new Label("Welcome Peter. Freedom from sins is guaranteed in God's word.");
-        centerLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: white");
         //bible verse label
         Label bibleVerseLabel = new Label("It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened by a yoke of slavery. -Gal 5:1");
-        bibleVerseLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: white");
+        //Label for invites
+
+        //Styling the labels
+        String labelTextStyle = "-fx-text-fill: black;" +
+                "-fx-font-family: 'Georgia';"+
+                "-fx-font-style: italic;"+
+                "-fx-font-size: 20px;";
+
+        centerLabel.setStyle(labelTextStyle);
+        bibleVerseLabel.setStyle(labelTextStyle);
 
         // Add the label to the GridPane at position 1, 2 (column 1, row 2)
         gridPane.add(centerLabel, 1, 2);
@@ -104,11 +112,12 @@ public class Workspace extends BorderPane {
         // Set the GridPane to the center of the BorderPane
         this.setCenter(gridPane);
         //loading background image using getResourceAsStream
-        try(InputStream is = getClass().getResourceAsStream("/img.png")){
+        try(InputStream is = getClass().getResourceAsStream("/goodimg.jpg")){
             if (is == null){
                 throw new IllegalArgumentException("Image not found!");
             }
-            Image image =new Image(is);
+            //Enabling smooth property  for better scaling quality
+            Image image =new Image(is, 0, 0, true, true);
             BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
             BackgroundImage backgroundImage = new BackgroundImage(image,
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
