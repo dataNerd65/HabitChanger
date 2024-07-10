@@ -1,2 +1,9 @@
-background-color: #0093E9;
-background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+/* Targeting BorderPane specifically */
+/* Corrected CSS for linear gradient */
+.root {
+    /*-fx-background-color: linear-gradient(to right, #0093E9 0%, #80D0C7 100%);*/
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, rgba(0,0,0,1) 9.2%, rgba(127,16,16,1) 103.9%);
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}
+
