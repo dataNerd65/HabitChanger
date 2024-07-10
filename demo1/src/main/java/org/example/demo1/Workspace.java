@@ -1,6 +1,7 @@
 package org.example.demo1;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -96,26 +97,65 @@ public class Workspace extends BorderPane {
         //bible verse label
         Label bibleVerseLabel = new Label("It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened by a yoke of slavery. -Gal 5:1");
         //Label for invites
-        Label invitesLabel = new Label("Would you like to invite any of your friends?");
+        Label invitesLabel = new Label("Would you like to invite any of your friends to also experience it?");
         //Styling the labels
         String labelTextStyle = "-fx-text-fill: black;" +
                 "-fx-font-family: 'Georgia';"+
                 "-fx-font-style: italic;"+
                 "-fx-font-size: 20px;";
+
         //checkbox
-        CheckBox invitesCheckbox = new CheckBox("Yes, I would like to invite my friends");
+        CheckBox invitesCheckbox = new CheckBox("Yes, I would like to invite my friends.");
         //styling
         invitesCheckbox.setStyle("-fx-font-family: 'Georgia'; -fx-font-size: 18px; -fx-font-weight: bold;");
 
         //TextField for entering friend's email, initially not visible
         TextField friendEmail = new TextField();
         friendEmail.setVisible(false); // initially hidden
-        friendEmail.setPromptText("Enter their email");
+        friendEmail.setPromptText("Enter their email...");
         friendEmail.setPrefWidth(300);
+
+        //submit and cancel buttons
+        Button submitButton = new Button("Submit");
+        submitButton.setVisible(false);//initially not visible
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setVisible(false);//also hidden
+
+        // Style for submitButton
+        String submitButtonStyle = "-fx-background-color: #00FFFFFF;" +
+                "-fx-text-fill: black;" +
+                "-fx-font-family: 'Arial';" +
+                "-fx-font-weight: bold;" +
+                "-fx-border-color: black;" +
+                "-fx-border-width: 2;" +
+                "-fx-font-size: 14px;";
+
+        // Style for cancelButton
+        String cancelButtonStyle = "-fx-background-color: #00FFFFFF;" +
+                "-fx-text-fill: red;" +
+                "-fx-font-family: 'Arial';" +
+                "-fx-font-weight: bold;" +
+                "-fx-border-color: black;" +
+                "-fx-border-width: 2;" +
+                "-fx-font-size: 14px;";
+
+        // Apply the styles
+        submitButton.setStyle(submitButtonStyle);
+        cancelButton.setStyle(cancelButtonStyle);
+
+
+
+        //Creating a HBox to hold the label ant the TextField together
+        HBox invitesBox = new HBox(10);//spacing between elements in the HBox
+        invitesBox.setAlignment(Pos.CENTER_LEFT); //Aligning items to the left
+        //Add
+        invitesBox.getChildren().addAll(invitesCheckbox, friendEmail, submitButton, cancelButton);
 
         //listener to checkbox
         invitesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) ->{
             friendEmail.setVisible(newValue);
+            submitButton.setVisible(newValue);
+            cancelButton.setVisible(newValue);
         });
 
         centerLabel.setStyle(labelTextStyle);
@@ -128,8 +168,7 @@ public class Workspace extends BorderPane {
         gridPane.add(bibleVerseLabel, 1, 3);
         //invites
         gridPane.add(invitesLabel, 1, 4);
-        gridPane.add(invitesCheckbox, 1, 5);
-        gridPane.add(friendEmail, 1, 6); //next to checkbox
+        gridPane.add(invitesBox, 1, 5);
 
 
         // Set the GridPane to the center of the BorderPane
