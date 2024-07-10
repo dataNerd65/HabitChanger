@@ -1,7 +1,10 @@
 package org.example.demo1;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -9,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.InputStream;
 
@@ -56,7 +60,17 @@ public class Workspace extends BorderPane {
         });
         //Create buttons calling the method
         Button profileButton = createSidebarButton("Your profile", sidebar, () -> System.out.println("Profile button clicked!"));
-        Button dailyReportsButton = createSidebarButton("Daily Reports", sidebar, () -> System.out.println("Daily Reports button clicked!"));
+        Button dailyReportsButton = createSidebarButton("Daily Reports", sidebar, () ->
+                System.out.println("Daily Reports button clicked!"));
+        dailyReportsButton.setOnAction(event -> {
+            Platform.runLater(() -> {
+                DailyReports dailyReportsView = new DailyReports();
+                Scene scene = new Scene(dailyReportsView, 1200, 800);
+                Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            });
+        });
         Button weeklyReportsButton = createSidebarButton("Weekly Reports", sidebar, () -> System.out.println("Weekly Reports button clicked!"));
         Button financialsButton = createSidebarButton("Financials", sidebar, () -> System.out.println("Financials button clicked!"));
         Button MyCalendar = createSidebarButton("Calendar", sidebar, () -> System.out.println("Calendar button clicked!"));
