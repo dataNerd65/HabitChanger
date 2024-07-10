@@ -3,8 +3,11 @@ package org.example.demo1;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+
+import java.io.InputStream;
 
 public class Workspace extends BorderPane {
     public Workspace() {
@@ -100,7 +103,20 @@ public class Workspace extends BorderPane {
 
         // Set the GridPane to the center of the BorderPane
         this.setCenter(gridPane);
-
+        //loading background image using getResourceAsStream
+        try(InputStream is = getClass().getResourceAsStream("/img.png")){
+            if (is == null){
+                throw new IllegalArgumentException("Image not found!");
+            }
+            Image image =new Image(is);
+            BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
+            BackgroundImage backgroundImage = new BackgroundImage(image,
+                    BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+            gridPane.setBackground(new Background(backgroundImage));
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error loading image!");
+        }
 
     }
 }
