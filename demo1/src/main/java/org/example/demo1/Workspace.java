@@ -2,7 +2,9 @@ package org.example.demo1;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -94,20 +96,41 @@ public class Workspace extends BorderPane {
         //bible verse label
         Label bibleVerseLabel = new Label("It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened by a yoke of slavery. -Gal 5:1");
         //Label for invites
-
+        Label invitesLabel = new Label("Would you like to invite any of your friends?");
         //Styling the labels
         String labelTextStyle = "-fx-text-fill: black;" +
                 "-fx-font-family: 'Georgia';"+
                 "-fx-font-style: italic;"+
                 "-fx-font-size: 20px;";
+        //checkbox
+        CheckBox invitesCheckbox = new CheckBox("Yes, I would like to invite my friends");
+        //styling
+        invitesCheckbox.setStyle("-fx-font-family: 'Georgia'; -fx-font-size: 18px; -fx-font-weight: bold;");
+
+        //TextField for entering friend's email, initially not visible
+        TextField friendEmail = new TextField();
+        friendEmail.setVisible(false); // initially hidden
+        friendEmail.setPromptText("Enter their email");
+        friendEmail.setPrefWidth(300);
+
+        //listener to checkbox
+        invitesCheckbox.selectedProperty().addListener((observable, oldValue, newValue) ->{
+            friendEmail.setVisible(newValue);
+        });
 
         centerLabel.setStyle(labelTextStyle);
         bibleVerseLabel.setStyle(labelTextStyle);
+        invitesLabel.setStyle(labelTextStyle);
 
         // Add the label to the GridPane at position 1, 2 (column 1, row 2)
         gridPane.add(centerLabel, 1, 2);
         //bible verse below
         gridPane.add(bibleVerseLabel, 1, 3);
+        //invites
+        gridPane.add(invitesLabel, 1, 4);
+        gridPane.add(invitesCheckbox, 1, 5);
+        gridPane.add(friendEmail, 1, 6); //next to checkbox
+
 
         // Set the GridPane to the center of the BorderPane
         this.setCenter(gridPane);
