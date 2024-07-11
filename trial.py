@@ -1,8 +1,13 @@
 #Importing necessary libraries
 import random
 from dbutil import DBUtility
-#A class for questions
+
+#connection to be made global for all methods and classes
+connection = DBUtility.get_connection()
+
 print("\033[1mDaily Recovery Journal\033[0m") #Acting like a label
+
+#A class for questions
 class Recovery_Questions:
     #Starting off with a greeting
     def start_program_with_greetings(self):
@@ -24,18 +29,16 @@ class Recovery_Questions:
 
     def personal_reflection(self):
         print("\033[1mPersonal Reflection\033[0m")
-        #Using the connection
-        connection = DBUtility.get_connection()
         if connection:
             #performing database operations
             cursor = connection.cursor()
-            #query
+            #query to test
             cursor.execute("SELECT * FROM users2")
             records = cursor.fetchall()
             for record in records:
                 print(record)
             connection.close()
-        print("How do you feel today? (e.g., Happy, Sad, Anxious, Hopeful):")
+        print(input("How do you feel today? (e.g., Happy, Sad, Anxious, Hopeful):"))
 
 RecoveryQuestions = Recovery_Questions()
 RecoveryQuestions.start_program_with_greetings()
