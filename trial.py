@@ -66,9 +66,13 @@ class Recovery_Questions:
                 break
             else:
                print("Invalid response! Please answer with 'Yes' or 'No'.")
-        
-    
 
+        print("\033Affirmations\033[0m")  
+        print("Write down three positive affirmations you said to yourself today: ") 
+        affirmations_list = [] #list also
+        for i in range(3):
+            affirmations = input(f"Affirmation {i+1}:")
+            affirmations_list.append(affirmations)
 
 #using the methods
 RecoveryQuestions = Recovery_Questions()#First instantiating the class
