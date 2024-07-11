@@ -34,13 +34,25 @@ class Recovery_Questions:
             cursor = connection.cursor()
             #query to test
             cursor.execute("SELECT * FROM users2")
-            records = cursor.fetchall()
-            for record in records:
-                print(record)
+               
             connection.close()
-        print(input("How do you feel today? (e.g., Happy, Sad, Anxious, Hopeful):"))
+        mood = input("How do you feel today? (e.g., Happy, Sad, Anxious, Hopeful): ")
+        print(mood)
+        reason_for_mood = input("Any particular reason for this mood?: ")
+        print(reason_for_mood)
+        print("\033[1mGratitude\033[0m")
+        #Using a loop to take in the three responses
+        print("List three things you are grateful for today.")
+        grateful_things = [] #List to strore the responses
+        for i in range(3):
+            thing = input(f"Number {i+1}: ")
+            grateful_things.append(thing) #Adding responses to the list
+        
+        #printing list
+        print("You are grateful for:", grateful_things)
 
-RecoveryQuestions = Recovery_Questions()
+#using the methods
+RecoveryQuestions = Recovery_Questions()#First instantiating the class
 RecoveryQuestions.start_program_with_greetings()
 RecoveryQuestions.personal_reflection()
         
