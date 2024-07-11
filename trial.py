@@ -51,6 +51,25 @@ class Recovery_Questions:
         #printing list
         print("You are grateful for:", grateful_things)
 
+        print("\033[1mSpiritual and Mental Health\033[0m")
+        print("\033[1mPrayer and Meditation\033[0m")
+
+
+        while True:
+            prayer_meditation = input("Did you pray or meditate today? (Yes/No): ").lower()
+            if prayer_meditation == "yes":
+               print("Yes, I did pray or meditate.")
+               after_prayer_feeling = input("How did it make you feel? (e.g., Calmer, More focused): ")
+               break
+            elif prayer_meditation == "no":
+                print("I did not pray or meditate.")
+                break
+            else:
+               print("Invalid response! Please answer with 'Yes' or 'No'.")
+        
+    
+
+
 #using the methods
 RecoveryQuestions = Recovery_Questions()#First instantiating the class
 RecoveryQuestions.start_program_with_greetings()
