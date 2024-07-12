@@ -77,23 +77,37 @@ class Recovery_Questions:
         print("\033[1mDaily Activities\033[0m")
         print("\033[1mHealthy habits\033[0m")
 
-        #Amethod for repetitive questions
-        def handle_healthy_habit(question, type):
+        #Amethod for repetitive questions and is versatile
+        def handle_healthy_habit(question, type, follow_up_question=None):
+            follow_up_response = None #Initialize variable to store follow-up response if any
             while True:
                 response = input(question + " (Yes/No): ").lower()
                 if response == "yes":
                     print(f"Yes i did {type}.")
+                    if follow_up_question:
+                        follow_up_response = input(follow_up_question)
                     break
                 elif response == "no":
                     print(f"I did not {type}.")
                     break
                 else:
                     print("Invalid response! Please answer with 'Yes' or 'No'.")
+            return response, follow_up_response #returning both initial and follow up responses
 
         #Usage
         exercise_status = handle_healthy_habit("Did you exercise today?", "exercise")
         balancedMeals_status = handle_healthy_habit("Did you eat healthy meals today?","eat healthy meals today")
         enoughSleep_status = handle_healthy_habit("Did you get enough sleep last night? (Yes/No)?", "sleep enough today")
+
+        print("\033[1mAddiction Tracking\033[0m")
+        #usage of the method in addiction tracking
+        cravings_status, handling_method = handle_healthy_habit(
+            "Did you experience any cravings for drugs or porn today?",
+            "experience cravings",
+            "If yes, how did you handle them?"
+        )
+
+
         
 
         
