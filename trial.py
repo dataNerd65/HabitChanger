@@ -119,11 +119,22 @@ class Recovery_Questions:
             "talk to someone",
             "How did it help you?"
         )
+        print("\033[1mAccountability Partner\033[0m")
+        Accountability_partner_convo, help_from_her_him = handle_healthy_habit (
+            "Did you check in with your accountability partner today? ",
+            "talk to my accountability partner"
+            "How did that conversation go? "
+        )
+        print("\033[1mReflection and Planning\033[0m")
+        print("\033[1mChallenges\033[0m")
+        challenge_of_day = input("What was the most challenging part of your day? :")
+        dealing_with_challenge = input("How did you deal with it? ")
+
+        print("\033[1mVictories\033[0m")
+        victories = input("What was your biggest victory or achievement today? ")
 
 
-        
 
-        
 
 #using the methods
 RecoveryQuestions = Recovery_Questions()#First instantiating the class
