@@ -104,7 +104,20 @@ class Recovery_Questions:
         cravings_status, handling_method = handle_healthy_habit(
             "Did you experience any cravings for drugs or porn today?",
             "experience cravings",
-            "If yes, how did you handle them?"
+            "How did you handle them? "
+        )
+        print("\033[1mRelapse Check\033[0m")
+        relapse_status, trigger_and_avoidance = handle_healthy_habit(
+            "Did you fall into any addiction today? ",
+            "relapse",
+            "What do you think triggered it and how can you avoid it next time? "
+        )
+        print("\033[1mSupport System\033[0m")
+        print("\033[1mConnection\033[0m")
+        connection_status, help = handle_healthy_habit(
+            "Did you talk to a sponsor, therapist, or support group today? ",
+            "talk to someone",
+            "How did it help you?"
         )
 
 
