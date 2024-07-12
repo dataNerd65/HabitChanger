@@ -67,31 +67,31 @@ class Recovery_Questions:
             else:
                print("Invalid response! Please answer with 'Yes' or 'No'.")
 
-        print("\033Affirmations\033[0m")  
+        print("\033[1mAffirmations\033[0m")  
         print("Write down three positive affirmations you said to yourself today: ") 
         affirmations_list = [] #list also
         for i in range(3):
             affirmations = input(f"Affirmation {i+1}:")
             affirmations_list.append(affirmations)
         
-        print("\033Daily Activities\033[0m")
-        print("\033Healthy habits\033[0m")
+        print("\033[1mDaily Activities\033[0m")
+        print("\033[1mHealthy habits\033[0m")
 
         #Amethod for repetitive questions
         def handle_healthy_habit(question, type):
             while True:
-                response = input(question + " (Yes/no): ").lower()
+                response = input(question + " (Yes/No): ").lower()
                 if response == "yes":
-                    print("Yes i did {type}.")
+                    print(f"Yes i did {type}.")
                     break
                 elif response == "no":
-                    print("I did not {type}.")
+                    print(f"I did not {type}.")
                     break
                 else:
                     print("Invalid response! Please answer with 'Yes' or 'No'.")
 
         #Usage
-        exercise_status = handle_healthy_habit("Did you exercise today?", "pray")
+        exercise_status = handle_healthy_habit("Did you exercise today?", "exercise")
         balancedMeals_status = handle_healthy_habit("Did you eat healthy meals today?","eat healthy meals today")
         enoughSleep_status = handle_healthy_habit("Did you get enough sleep last night? (Yes/No)?", "sleep enough today")
         
