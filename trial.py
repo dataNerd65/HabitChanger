@@ -43,13 +43,18 @@ class Recovery_Questions:
         print("\033[1mGratitude\033[0m")
         #Using a loop to take in the three responses
         print("List three things you are grateful for today.")
-        grateful_things = [] #List to strore the responses
-        for i in range(3):
-            thing = input(f"Number {i+1}: ")
-            grateful_things.append(thing) #Adding responses to the list
+        def get_three_inputs(self): #Function for getting three inputs
+            things = [] #List to handle the three inputs
+            for i in range(3):
+                thing = input(f"Number {i+1}: ")
+                things.append(thing) #Adding responses to the list
+            return things #Returning the list of things
+        #Calling this function whenever you need to get three inputs
+        grateful_things = get_three_inputs()
+
         
         #printing list
-        print("You are grateful for:", grateful_things)
+        print(f"You are grateful for {i+1}:", ', ' .join(grateful_things))
 
         print("\033[1mSpiritual and Mental Health\033[0m")
         print("\033[1mPrayer and Meditation\033[0m")
@@ -69,10 +74,12 @@ class Recovery_Questions:
 
         print("\033[1mAffirmations\033[0m")  
         print("Write down three positive affirmations you said to yourself today: ") 
-        affirmations_list = [] #list also
-        for i in range(3):
-            affirmations = input(f"Affirmation {i+1}:")
-            affirmations_list.append(affirmations)
+        
+        affirmations = get_three_inputs()
+        i = 0  # Define the variable i
+        print(f"Affirmation number {i+1}:", ', ' .join(affirmations))
+        
+
         
         print("\033[1mDaily Activities\033[0m")
         print("\033[1mHealthy habits\033[0m")
@@ -102,7 +109,7 @@ class Recovery_Questions:
         print("\033[1mAddiction Tracking\033[0m")
         #usage of the method in addiction tracking
         cravings_status, handling_method = handle_healthy_habit(
-            "Did you experience any cravings for drugs or porn today?",
+            "Did you experience any cravings for drugs or porn today? ",
             "experience cravings",
             "How did you handle them? "
         )
@@ -122,17 +129,28 @@ class Recovery_Questions:
         print("\033[1mAccountability Partner\033[0m")
         Accountability_partner_convo, help_from_her_him = handle_healthy_habit (
             "Did you check in with your accountability partner today? ",
-            "talk to my accountability partner"
+            "talk to my accountability partner",
             "How did that conversation go? "
         )
         print("\033[1mReflection and Planning\033[0m")
         print("\033[1mChallenges\033[0m")
-        challenge_of_day = input("What was the most challenging part of your day? :")
+        challenge_of_day = input("What was the most challenging part of your day? ")
         dealing_with_challenge = input("How did you deal with it? ")
 
         print("\033[1mVictories\033[0m")
         victories = input("What was your biggest victory or achievement today? ")
+        print("\033[1mImprovements\033[0m")
+        improvements = input("What can you do differently tomorrow to stay on track with your recovery? ")
+        #Tomorrow's goals section
+        print("\033[1mTomorrow's Goals\033[0m")
+        print("List three goals you want to achieve tomorrow. ")
 
+
+        print("\033[1m__Daily Summary\033[0m")
+        print("\033[1mOverall Progress\033[0m")
+        print("Reflect on your overall progress and feelings about your recovery journey today.")
+
+        
 
 
 
