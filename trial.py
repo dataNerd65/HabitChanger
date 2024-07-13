@@ -43,7 +43,7 @@ class Recovery_Questions:
         print("\033[1mGratitude\033[0m")
         #Using a loop to take in the three responses
         print("List three things you are grateful for today.")
-        def get_three_inputs(self): #Function for getting three inputs
+        def get_three_inputs(): #Function for getting three inputs
             things = [] #List to handle the three inputs
             for i in range(3):
                 thing = input(f"Number {i+1}: ")
@@ -51,10 +51,8 @@ class Recovery_Questions:
             return things #Returning the list of things
         #Calling this function whenever you need to get three inputs
         grateful_things = get_three_inputs()
-
         
-        #printing list
-        print(f"You are grateful for {i+1}:", ', ' .join(grateful_things))
+        print(f"You are grateful for:", ', ' .join(grateful_things))
 
         print("\033[1mSpiritual and Mental Health\033[0m")
         print("\033[1mPrayer and Meditation\033[0m")
@@ -76,10 +74,7 @@ class Recovery_Questions:
         print("Write down three positive affirmations you said to yourself today: ") 
         
         affirmations = get_three_inputs()
-        i = 0  # Define the variable i
-        print(f"Affirmation number {i+1}:", ', ' .join(affirmations))
-        
-
+        print(f"Affirmations:", ', ' .join(affirmations))
         
         print("\033[1mDaily Activities\033[0m")
         print("\033[1mHealthy habits\033[0m")
@@ -124,7 +119,7 @@ class Recovery_Questions:
         connection_status, help = handle_healthy_habit(
             "Did you talk to a sponsor, therapist, or support group today? ",
             "talk to someone",
-            "How did it help you?"
+            "How did it help you? "
         )
         print("\033[1mAccountability Partner\033[0m")
         Accountability_partner_convo, help_from_her_him = handle_healthy_habit (
