@@ -57,28 +57,6 @@ class Recovery_Questions:
         print("\033[1mSpiritual and Mental Health\033[0m")
         print("\033[1mPrayer and Meditation\033[0m")
 
-
-        while True:
-            prayer_meditation = input("Did you pray or meditate today? (Yes/No): ").lower()
-            if prayer_meditation == "yes":
-               print("Yes, I did pray or meditate.")
-               after_prayer_feeling = input("How did it make you feel? (e.g., Calmer, More focused): ")
-               break
-            elif prayer_meditation == "no":
-                print("I did not pray or meditate.")
-                break
-            else:
-               print("Invalid response! Please answer with 'Yes' or 'No'.")
-
-        print("\033[1mAffirmations\033[0m")  
-        print("Write down three positive affirmations you said to yourself today: ") 
-        
-        affirmations = get_three_inputs()
-        print(f"Affirmations:", ', ' .join(affirmations))
-        
-        print("\033[1mDaily Activities\033[0m")
-        print("\033[1mHealthy habits\033[0m")
-
         #Amethod for repetitive questions and is versatile
         def handle_healthy_habit(question, type, follow_up_question=None):
             follow_up_response = None #Initialize variable to store follow-up response if any
@@ -95,6 +73,23 @@ class Recovery_Questions:
                 else:
                     print("Invalid response! Please answer with 'Yes' or 'No'.")
             return response, follow_up_response #returning both initial and follow up responses
+        
+        prayer_meditation, feelings_after = handle_healthy_habit("Did you pray or meditate today? ",
+                                                 "pray and meditate",
+                                                 "How did it make you feel? (e.g., Calmer, More focused): ")
+
+    
+
+        print("\033[1mAffirmations\033[0m")  
+        print("Write down three positive affirmations you said to yourself today: ") 
+        
+        affirmations = get_three_inputs()
+        print(f"Affirmations:", ', ' .join(affirmations))
+        
+        print("\033[1mDaily Activities\033[0m")
+        print("\033[1mHealthy habits\033[0m")
+
+        
 
         #Usage
         exercise_status = handle_healthy_habit("Did you exercise today?", "exercise")
