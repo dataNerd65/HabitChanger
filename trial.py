@@ -135,6 +135,10 @@ class Recovery_Questions:
         print("\033[1mTomorrow's Goals\033[0m")
         print("List three goals you want to achieve tomorrow. ")
 
+        tommorrows_plan = get_three_inputs()
+        print(f"Tomorrows Three must-do plans :", ', ' .join(tommorrows_plan))
+
+
 
         print("\033[1m__Daily Summary\033[0m")
         print("\033[1mOverall Progress\033[0m")
