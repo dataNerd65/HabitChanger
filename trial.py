@@ -43,21 +43,19 @@ class Recovery_Questions:
         print("\033[1mGratitude\033[0m")
         #Using a loop to take in the three responses
         
-        def get_three_inputs(): #Function for getting three inputs
-            things = [] #List to handle the three inputs
+        def get_three_inputs():  # Function for getting three inputs
+            things = []  # List to handle the three inputs
             try:
-                for i in range(3):
-                    thing = input(f"Number {i+1}: ")
-                    if thing.strip() == "": #Checking if input is not whitespace
-                        raise ValueError("Input cannot be empty.")
-                    things.append(thing) #Adding responses to the list
-                if not things:
-                    raise ValueError("You must provide three items.")
+                for i in range(3):  # Ensuring exactly 3 items
+                    while True:  # Keep asking until a valid input is given
+                        thing = input(f"Number {i+1}: ")
+                        if thing:  # Checking if input is not empty
+                            things.append(thing)  # Adding responses to the list
+                            break  # Exiting loop once a valid input is given
+                        else:
+                            print("Error: Input cannot be empty.")
             except KeyboardInterrupt:
                 print("\nOperation cancelled.")
-                return None
-            except ValueError as e:
-                print(f"Error:{e}")
                 return None
             return things
         
@@ -65,7 +63,11 @@ class Recovery_Questions:
         def capture_grateful_things_today():
             print("List three things you are grateful for today.")
             grateful_things = get_three_inputs()
-            print(f"You are grateful for:", ', ' .join(grateful_things))
+            #Avoiding error
+            if grateful_things is None:
+                print("Gratitude input was cancelled.")
+            else:
+                print(f"You are grateful for:", ', ' .join(grateful_things))
             return grateful_things
         #Calling the nested function within personal_reflection method
         self.capture_grateful_things_today = capture_grateful_things_today
