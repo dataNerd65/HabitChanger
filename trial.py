@@ -29,17 +29,37 @@ class Recovery_Questions:
 
     def personal_reflection(self):
         print("\033[1mPersonal Reflection\033[0m")
-        if connection:
-            #performing database operations
-            cursor = connection.cursor()
-            #query to test
-            cursor.execute("SELECT * FROM users2")
-               
-            connection.close()
-        mood = input("How do you feel today? (e.g., Happy, Sad, Anxious, Hopeful): ")
-        print(mood)
-        reason_for_mood = input("Any particular reason for this mood?: ")
-        print(reason_for_mood)
+        try:
+            if connection:
+               #performing database operations
+               cursor = connection.cursor()
+               #query to test
+               cursor.execute("SELECT * FROM users2")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        finally:
+            if connection:
+                connection.close()
+        
+        try:
+            while True:
+                mood = input("How do you feel today? (e.g., Happy, Sad, Anxious, Hopeful): ")
+                if mood:
+                    break
+                else:
+                    print("Error: Input cannot be empty.")
+            print(mood)
+
+            while True:
+                reason_for_mood = input("Any particular reason for this mood?: ")
+                if reason_for_mood:
+                    break
+                else:
+                    print("Error: Input cannot be empty.")
+            print(reason_for_mood)
+        except Exception as e:
+            print(f"An error occurred while capturing mood: {e}")
+     
         print("\033[1mGratitude\033[0m")
         #Using a loop to take in the three responses
         
@@ -104,7 +124,12 @@ class Recovery_Questions:
         def capture_affirmations():
             print("Write down three positive affirmations you said to yourself today: ") 
             affirmations = get_three_inputs()
-            print(f"Affirmations:", ', ' .join(affirmations))
+            if affirmations is None:
+                print("Affirmation input was cancelled.")
+            else:
+                print(f"Affirmations:", ', ' .join(affirmations))
+                return affirmations #i will wish to use this to insert in db
+
         #calling the nested function
         self.capture_affirmations = capture_affirmations
         self.capture_affirmations()
@@ -160,7 +185,12 @@ class Recovery_Questions:
         def capture_tomorrows_plan():
             print("List three goals you want to achieve tomorrow. ")
             tommorrows_plan = get_three_inputs()
-            print(f"Tomorrows Three must-do plans :", ', ' .join(tommorrows_plan))
+            if tommorrows_plan is None:
+                print("Tommorrow's input was cancelled.")
+            else:
+                print(f"Tomorrows Three must-do plans :", ', ' .join(tommorrows_plan))
+            return tommorrows_plan
+
         #calling the nested function within personal_reflection method
         self.capture_tomorrows_plan = capture_tomorrows_plan
         self.capture_tomorrows_plan()
