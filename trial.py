@@ -42,18 +42,36 @@ class Recovery_Questions:
         print(reason_for_mood)
         print("\033[1mGratitude\033[0m")
         #Using a loop to take in the three responses
-        print("List three things you are grateful for today.")
+        
         def get_three_inputs(): #Function for getting three inputs
             things = [] #List to handle the three inputs
-            for i in range(3):
-                thing = input(f"Number {i+1}: ")
-                things.append(thing) #Adding responses to the list
-            return things #Returning the list of things
-        #Calling this function whenever you need to get three inputs
-        grateful_things = get_three_inputs()
+            try:
+                for i in range(3):
+                    thing = input(f"Number {i+1}: ")
+                    if thing.strip() == "": #Checking if input is not whitespace
+                        raise ValueError("Input cannot be empty.")
+                    things.append(thing) #Adding responses to the list
+                if not things:
+                    raise ValueError("You must provide three items.")
+            except KeyboardInterrupt:
+                print("\nOperation cancelled.")
+                return None
+            except ValueError as e:
+                print(f"Error:{e}")
+                return None
+            return things
         
-        print(f"You are grateful for:", ', ' .join(grateful_things))
+        #Realized when modularizing i can use a method inside another
+        def capture_grateful_things_today():
+            print("List three things you are grateful for today.")
+            grateful_things = get_three_inputs()
+            print(f"You are grateful for:", ', ' .join(grateful_things))
+            return grateful_things
+        #Calling the nested function within personal_reflection method
+        self.capture_grateful_things_today = capture_grateful_things_today
+        self.capture_grateful_things_today()
 
+        
         print("\033[1mSpiritual and Mental Health\033[0m")
         print("\033[1mPrayer and Meditation\033[0m")
 
@@ -81,16 +99,19 @@ class Recovery_Questions:
     
 
         print("\033[1mAffirmations\033[0m")  
-        print("Write down three positive affirmations you said to yourself today: ") 
-        
-        affirmations = get_three_inputs()
-        print(f"Affirmations:", ', ' .join(affirmations))
+        def capture_affirmations():
+            print("Write down three positive affirmations you said to yourself today: ") 
+            affirmations = get_three_inputs()
+            print(f"Affirmations:", ', ' .join(affirmations))
+        #calling the nested function
+        self.capture_affirmations = capture_affirmations
+        self.capture_affirmations()
+
         
         print("\033[1mDaily Activities\033[0m")
         print("\033[1mHealthy habits\033[0m")
 
         
-
         #Usage
         exercise_status = handle_healthy_habit("Did you exercise today?", "exercise")
         balancedMeals_status = handle_healthy_habit("Did you eat healthy meals today?","eat healthy meals today")
@@ -133,11 +154,15 @@ class Recovery_Questions:
         improvements = input("What can you do differently tomorrow to stay on track with your recovery? ")
         #Tomorrow's goals section
         print("\033[1mTomorrow's Goals\033[0m")
-        print("List three goals you want to achieve tomorrow. ")
 
-        tommorrows_plan = get_three_inputs()
-        print(f"Tomorrows Three must-do plans :", ', ' .join(tommorrows_plan))
-
+        def capture_tomorrows_plan():
+            print("List three goals you want to achieve tomorrow. ")
+            tommorrows_plan = get_three_inputs()
+            print(f"Tomorrows Three must-do plans :", ', ' .join(tommorrows_plan))
+        #calling the nested function within personal_reflection method
+        self.capture_tomorrows_plan = capture_tomorrows_plan
+        self.capture_tomorrows_plan()
+        
 
 
         print("\033[1m__Daily Summary\033[0m")
@@ -145,9 +170,6 @@ class Recovery_Questions:
         print("Reflect on your overall progress and feelings about your recovery journey today.")
 
         
-
-
-
 #using the methods
 RecoveryQuestions = Recovery_Questions()#First instantiating the class
 RecoveryQuestions.start_program_with_greetings()
